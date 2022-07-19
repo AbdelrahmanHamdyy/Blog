@@ -3,6 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 class Post
 {
     public $title, $excerpt, $date, $body, $slug;
@@ -24,25 +26,31 @@ class Post
 
     public static function find($slug)
     {
-        $path = resource_path("posts/{$slug}.html");
-
-        if (!file_exists($path)) {
-            throw new ModelNotFoundException();
-        }
-        $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), function() use ($path){
-            // var_dump('file_get_contents');
-            return file_get_contents($path);
-        });
-
+        // Of all the blog posts, find the one with a slug
+        // that matches the one requested
+        $posts = static::all();
+        $post = $posts->firstWhere('slug', $slug);
         return $post;
     }
 
     public static function all()
     {
-        $files = File::files(resource_path("posts/"));
-        return array_map(function ($file) {
-            return $file->getContents();
-        }, $files);
+        return cache()->rememberForever('posts.all', function() {
+            $files = File::files(resource_path("posts/"));
+            $posts = collect($files)->map(function($file) {
+                return YamlFrontMatter::parseFile($file);
+            })->map(function ($document) {
+                return new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug
+                );
+            })->sortByDesc('date');
+            return $posts;
+        });
+        // You now have to forget the cache explicitly
     }
 }
 ?>
