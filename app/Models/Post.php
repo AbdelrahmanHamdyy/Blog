@@ -33,6 +33,14 @@ class Post
         return $post;
     }
 
+    public static function findOrFail($slug) {
+        $post = static::find($slug);
+        if (!$post) {
+            throw new ModelNotFoundException();
+        }
+        return $post;
+    }
+
     public static function all()
     {
         return cache()->rememberForever('posts.all', function() {
