@@ -1,4 +1,8 @@
-@extends('layout')
+@extends('components.layout')
+
+@section('banner')
+
+@endsection
 
 @section('content')
     @foreach($posts as $post)

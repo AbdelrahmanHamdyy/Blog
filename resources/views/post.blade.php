@@ -1,9 +1,6 @@
-<!DOCTYPE html>
+@extends('components.layout')
 
-<title>My Blog</title>
-<link rel="stylesheet" href="/app.css">
-
-<body>
+@section('content')
     <article>
         <h1><?= $post->title; ?></h1>
 
@@ -14,7 +11,7 @@
     </article>
 
     <a href='/'>Go Back</a>
-</body>
+@endsection
 
 
 
