@@ -1,31 +1,21 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<title>My Blog</title>
-<link rel="stylesheet" href="/app.css">
-
-@if (true)
-
-@endif
-
-@unless
-
-@endunless
-
-<body>
+@section('content')
     @foreach($posts as $post)
-    <article class="{{$loop->even ? 'foobar' : ''}}">
-        <h1>
-            <a href="/posts/{{$post->slug}}">
-                {{$post->title}}
-            </a>
-        </h1>
+        <article class="{{$loop->even ? 'foobar' : ''}}">
+            <h1>
+                <a href="/posts/{{$post->slug}}">
+                    {{$post->title}}
+                </a>
+            </h1>
 
-        <div>
-            {{$post->excerpt}}
-        </div>
-    </article>
+            <div>
+                {{$post->excerpt}}
+            </div>
+        </article>
     @endforeach
-</body>
+@endsection
+
 
 
 
