@@ -8,7 +8,8 @@
         <h1><?= $post->title; ?></h1>
 
         <div>
-            <?= $post->body; ?>
+            <!-- Because this is html we use this-->
+            {!! $post->body !!}
         </div>
     </article>
 
