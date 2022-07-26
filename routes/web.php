@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -17,7 +18,13 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
 
-    $posts = Post::all();
+    /* \Illuminate\Support\Facades\DB::listen(function ($query) {
+        logger($query->sql->bindings);
+    }); This prints executed queries to the log */
+
+    // Or use the clockwork tool for debugging
+
+    $posts = Post::with('category')->get();
 
 //    $posts = array_map(function ($file)  {
 //        $document = YamlFrontMatter::parseFile($file);
@@ -56,4 +63,10 @@ Route::get('posts/{post}', function(Post $post) {
         'post' => $post
     ]);
 
+});
+
+Route::get('categories/{category}', function(Category $category) {
+    return view('posts', [
+        'posts' => $category->posts
+    ]);
 });
