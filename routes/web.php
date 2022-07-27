@@ -68,12 +68,12 @@ Route::get('posts/{post}', function(Post $post) {
 
 Route::get('categories/{category}', function(Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category', 'author'])
     ]);
 });
 
 Route::get('authors/{author:username}', function(User $author) {
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts->load(['category', 'author'])
     ]);
 });
