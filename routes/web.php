@@ -24,7 +24,7 @@ Route::get('/', function () {
 
     // Or use the clockwork tool for debugging
 
-    $posts = Post::with('category')->get();
+    $posts = Post::latest()->with('category')->get();
 
 //    $posts = array_map(function ($file)  {
 //        $document = YamlFrontMatter::parseFile($file);
