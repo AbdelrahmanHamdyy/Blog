@@ -25,7 +25,7 @@ Route::get('/', function () {
 
     // Or use the clockwork tool for debugging
 
-    $posts = Post::latest()->with('category', 'author')->get();
+    $posts = Post::latest()->get();
 
 //    $posts = array_map(function ($file)  {
 //        $document = YamlFrontMatter::parseFile($file);
@@ -68,12 +68,12 @@ Route::get('posts/{post}', function(Post $post) {
 
 Route::get('categories/{category}', function(Category $category) {
     return view('posts', [
-        'posts' => $category->posts->load(['category', 'author'])
+        'posts' => $category->posts
     ]);
 });
 
 Route::get('authors/{author:username}', function(User $author) {
     return view('posts', [
-        'posts' => $author->posts->load(['category', 'author'])
+        'posts' => $author->posts
     ]);
 });
