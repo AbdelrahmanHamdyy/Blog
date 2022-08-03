@@ -49,8 +49,10 @@ Route::get('/', function () {
 //    }
 
     // $posts = Post::all();
+    $categories = Category::all();
     return view('posts', [
-    'posts' => $posts
+        'posts' => $posts,
+        'categories' => $categories
     ]);
 });
 
@@ -68,12 +70,15 @@ Route::get('posts/{post}', function(Post $post) {
 
 Route::get('categories/{category}', function(Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'currentCategory' => $category,
+        'categories' => Category::all()
     ]);
 });
 
 Route::get('authors/{author:username}', function(User $author) {
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
     ]);
 });
