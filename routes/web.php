@@ -18,40 +18,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
+    $posts = Post::latest();
 
-    /* \Illuminate\Support\Facades\DB::listen(function ($query) {
-        logger($query->sql->bindings);
-    }); This prints executed queries to the log */
-
-    // Or use the clockwork tool for debugging
-
-    $posts = Post::latest()->get();
-
-//    $posts = array_map(function ($file)  {
-//        $document = YamlFrontMatter::parseFile($file);
-//        return new Post(
-//            $document->title,
-//            $document->excerpt,
-//            $document->date,
-//            $document->body(),
-//            $document->slug
-//        );
-//    }, $files);
-//    foreach($files as $file) {
-//        $document = YamlFrontMatter::parseFile($file);
-//        $posts[] = new Post(
-//            $document->title,
-//            $document->excerpt,
-//            $document->date,
-//            $document->body(),
-//            $document->slug
-//        );
-//    }
-
+    if (request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%')
+            ->orwhere('body', 'like', '%' . request('search') . '%');
+    }
     // $posts = Post::all();
     $categories = Category::all();
     return view('posts', [
-        'posts' => $posts,
+        'posts' => $posts->get(),
         'categories' => $categories
     ]);
 })->name('home');
