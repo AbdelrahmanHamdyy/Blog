@@ -9,18 +9,16 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index()  {
-        $posts = Post::latest();
-
-        if (request('search')) {
-            $posts->where('title', 'like', '%' . request('search') . '%')
-                ->orwhere('body', 'like', '%' . request('search') . '%');
-        }
         // $posts = Post::all();
         $categories = Category::all();
         return view('posts', [
-            'posts' => $posts->get(),
+            'posts' => $this->getPosts(),
             'categories' => $categories
         ]);
+    }
+
+    protected function getPosts() {
+        return Post::latest()->filter(request(['search']))->get();
     }
 
     public function show(Post $post) {
