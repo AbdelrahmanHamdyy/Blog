@@ -12,13 +12,10 @@ class PostController extends Controller
         // $posts = Post::all();
         $categories = Category::all();
         return view('posts', [
-            'posts' => $this->getPosts(),
-            'categories' => $categories
+            'posts' => Post::latest()->filter(request(['search','category']))->get(),
+            'categories' => $categories,
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
-    }
-
-    protected function getPosts() {
-        return Post::latest()->filter(request(['search']))->get();
     }
 
     public function show(Post $post) {
