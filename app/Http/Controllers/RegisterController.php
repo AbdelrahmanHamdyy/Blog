@@ -21,5 +21,8 @@ class RegisterController extends Controller
         ]);
 
         User::create($attributes);
+        // Illuminate\Support\Facades\Hash::check('password', $jane->password);
+
+        return redirect('/');
     }
 }
