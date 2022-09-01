@@ -23,6 +23,8 @@ class RegisterController extends Controller
         User::create($attributes);
         // Illuminate\Support\Facades\Hash::check('password', $jane->password);
 
-        return redirect('/');
+        // session()->flash('success', 'Your account has been created');
+
+        return redirect('/')->with('success', 'Your account has been created');
     }
 }
