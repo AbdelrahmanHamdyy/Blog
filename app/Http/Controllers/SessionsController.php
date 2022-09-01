@@ -18,19 +18,19 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
         // Authenticate and login the user based on the provided credentials
-        if (auth()->attempt($attributes)) {
-            // Redirect with a success flash message
-            session()->regenerate(); // Session Fixation
-            return redirect('/')->with('success', 'Welcome Back!');
+        if (!auth()->attempt($attributes)) {
+            // Auth failed
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentials could not be verified'
+            ]);
+            // return back()
+            //  ->withInput()
+            //  ->withErrors(['email' => 'Your provided credentials could not be verified']);
         }
 
-        // Auth failed
-        throw ValidationException::withMessages([
-            'email' => 'Your provided credentials could not be verified'
-        ]);
-//        return back()
-//            ->withInput()
-//            ->withErrors(['email' => 'Your provided credentials could not be verified']);
+        // Redirect with a success flash message
+        session()->regenerate(); // Session Fixation
+        return redirect('/')->with('success', 'Welcome Back!');
     }
 
     public function destroy() {
@@ -38,3 +38,5 @@ class SessionsController extends Controller
         return redirect('/')->with('success', 'Goodbye');
     }
 }
+
+// LARAVEL BREEZE DOES ALL THAT FOR YOU
