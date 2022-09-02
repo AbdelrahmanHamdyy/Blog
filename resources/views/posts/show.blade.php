@@ -50,6 +50,7 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+                <section class="col-span-8 col-start-5 mt-6 space-y-6">
                 <x-panel>
                     <form method="POST" action="#" class="mt-5">
                         @csrf
@@ -71,6 +72,7 @@
                         </div>
                     </form>
                 </x-panel>
+                </section>
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
                     @foreach ($post->comments as $comment)
                         <x-post-comment :comment="$comment"/>
