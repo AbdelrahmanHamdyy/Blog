@@ -60,9 +60,9 @@
 
                         <div class="mt-6">
                             <label>
-                            <textarea name="body" rows="5" class="w-full text-sm focus:outline-none focus:ring"
-                                                    placeholder="Quick, think of something to say!">
-                            </textarea>
+<textarea name="body" rows="5" class="w-full text-sm focus:outline-none focus:ring"
+          placeholder="Quick, think of something to say!">
+</textarea>
                             </label>
                         </div>
 
