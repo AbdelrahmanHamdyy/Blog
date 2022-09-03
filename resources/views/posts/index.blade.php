@@ -7,7 +7,7 @@
             <x-posts-grid :posts="$posts"/>
             {{ $posts->links() }} {{-- Uses Tailwind css by default else you will have to style it--}}
         @else
-            <p class="text-center">No Posts yet. Please check back later</p>
+            <p class="text-center">No Posts yet. Please check back later!</p>
         @endif
     </main>
     {{--    @foreach($posts as $post)--}}

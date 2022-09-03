@@ -29,14 +29,13 @@
                     @csrf
                     <button type="submit">Log Out</button>
                 </form>
+                <a href="/?author={{ auth()->user()->username }}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    My Posts
+                </a>
             @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
                 <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
             @endauth
-
-            <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Subscribe for Updates
-            </a>
         </div>
     </nav>
 
