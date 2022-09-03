@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>Blog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -10,7 +10,8 @@
     <nav class="md:flex md:justify-between md:items-center">
         <div>
             <a href="/">
-                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+{{--                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">--}}
+                <h1 class="font-bold text-3xl text-blue-800 italic">BLOG-ZONE</h1>
             </a>
         </div>
 
