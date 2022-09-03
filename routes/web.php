@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use Illuminate\Validation\ValidationException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
@@ -33,13 +34,28 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-Route::get('ping', function() {
-   $mailchimp = new \MailchimpMarketing\ApiClient();
+Route::post('newsletter', function() {
+    request()->validate([
+        'email' => 'required|email'
+    ]);
 
-   $mailchimp->setConfig([
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+
+    $mailchimp->setConfig([
        'apiKey' => config('services.mailchimp.key'),
        'server' => 'us10'
    ]);
 
-   $response = $mailchimp->ping->get();
+    try {
+        $response = $mailchimp->lists->addListMember('92e8b42df1', [
+            'email_address' => request('email'),
+            'status' => 'subscribed'
+        ]);
+    } catch(Exception $e) {
+        throw ValidationException::withMessages([
+            'email' => 'This email could not be added to our newsletter list.'
+        ]);
+    }
+
+   return redirect('/')->with('success', 'You are now signed up for our newsletter');
 });
