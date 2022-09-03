@@ -9,6 +9,11 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 <body style="font-family: Open Sans, sans-serif">
 <style>
+
+    html {
+        scroll-behavior: smooth;
+    }
+
     .brand {
         font-family: 'Acme', sans-serif;
     }
@@ -18,20 +23,23 @@
         <div>
             <a href="/">
 {{--                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">--}}
-                <h1 class=" font-bold text-5xl text-blue-600 italic brand">ARCANE</h1>
+                <h1 class=" font-bold text-5xl text-blue-900 italic brand">ARCANE</h1>
             </a>
         </div>
 
         <div class="mt-8 md:mt-0 flex items-center">
             @auth
                 <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
-                <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
+                <a href="/?author={{ auth()->user()->username }}" class="bg-blue-500 ml-3 hover:bg-blue-600 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    My Posts
+                </a>
+                <a href="#newsletter" class="bg-blue-500 ml-3 hover:bg-blue-600 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Subscribe for Updates
+                </a>
+                <form method="POST" action="/logout" class="text-sm hover:text-blue-800 font-semibold text-blue-600 ml-6">
                     @csrf
                     <button type="submit">Log Out</button>
                 </form>
-                <a href="/?author={{ auth()->user()->username }}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                    My Posts
-                </a>
             @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
                 <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
@@ -41,7 +49,7 @@
 
     {{ $slot }}
 
-    <footer class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+    <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
         <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
         <h5 class="text-3xl">Stay in touch with the latest posts</h5>
         <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
