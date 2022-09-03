@@ -1,6 +1,7 @@
 <!doctype html>
 
 <title>Blog</title>
+<link type="image/png" href="/images/logo.png" rel="icon">
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,7 +18,7 @@
         <div>
             <a href="/">
 {{--                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">--}}
-                <h1 class=" font-bold text-5xl text-blue-800 italic brand">ARCANE</h1>
+                <h1 class=" font-bold text-5xl text-blue-600 italic brand">ARCANE</h1>
             </a>
         </div>
 
