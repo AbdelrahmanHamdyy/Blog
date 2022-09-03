@@ -4,14 +4,20 @@
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 <script src="//unpkg.com/alpinejs" defer></script>
 <body style="font-family: Open Sans, sans-serif">
+<style>
+    .brand {
+        font-family: 'Acme', sans-serif;
+    }
+</style>
 <section class="px-6 py-8">
     <nav class="md:flex md:justify-between md:items-center">
         <div>
             <a href="/">
 {{--                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">--}}
-                <h1 class="font-bold text-3xl text-blue-800 italic">BLOG-ZONE</h1>
+                <h1 class=" font-bold text-5xl text-blue-800 italic brand">ARCANE</h1>
             </a>
         </div>
 

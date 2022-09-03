@@ -1,6 +1,6 @@
 <header class="max-w-xl mx-auto mt-20 text-center">
     <h1 class="text-4xl">
-        Latest <span class="text-blue-500">Blog-Zone</span> News
+        Latest <span class="text-blue-500">Arcane Blog</span> News
     </h1>
 
 {{--    <h2 class="inline-flex mt-2">By Lary Laracore <img src="/images/lary-head.svg"--}}
