@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\MailchimpNewsletter;
 use App\Services\Newsletter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
                 'server' => 'us10'
             ]);
 
-            return new Newsletter($client);
+            return new MailchimpNewsletter($client);
         });
     }
 
