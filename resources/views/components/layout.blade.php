@@ -23,7 +23,7 @@
         <div>
             <a href="/">
 {{--                <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">--}}
-                <h1 class=" font-bold text-5xl text-blue-900 italic brand">ARCANE</h1>
+                <h1 class=" font-bold text-5xl text-blue-600 italic brand">ARCANE</h1>
             </a>
         </div>
 
